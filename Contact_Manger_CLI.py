@@ -42,18 +42,34 @@ def connect():
 
     return conn
 
+
 def add_contact(name, phone):
 
     conn = connect()
 
     cursor = conn.cursor()
+
+    # Check if a contact with the same name already exists (case-insensitive)
+    cursor.execute('SELECT * FROM contacts WHERE LOWER(name) = LOWER(?)', (name,))
+
+    existing_contact = cursor.fetchone() 
+
+    if existing_contact:
+
+        print('Contact already exists.')
+
+        conn.close()
+
+        return
     
-    # Insert a new contact into the database
-    cursor.execute('INSERT INTO contacts (name, phone) VALUES (?, ?)', (name, phone))
+    else:
 
-    print(f"Contact '{name}' added successfully.")
+        # Insert a new contact into the database
+        cursor.execute('INSERT INTO contacts (name, phone) VALUES (?, ?)', (name, phone))
 
-    conn.commit()
+        conn.commit()
+
+        print(f"Contact '{name}' added successfully.")
 
     conn.close()
 
