@@ -16,6 +16,8 @@ This application allows users to add, view, search, update, and delete contacts 
 - Persistent SQLite database storage
 - Case-insensitive contact searching
 - Menu-driven command-line interface
+- Duplicate contact prevention
+
 
 ---
 
@@ -105,7 +107,6 @@ Contact Manager CLI
 ## Future Improvements
 
 - Phone number validation
-- Duplicate contact prevention
 - Export contacts to CSV
 - Graphical user interface (GUI)
 - Object-oriented programming (OOP) refactor
